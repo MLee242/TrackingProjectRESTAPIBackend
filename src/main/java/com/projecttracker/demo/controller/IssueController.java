@@ -25,7 +25,7 @@ import com.projecttracker.demo.service.IssueService;
 
 import io.swagger.annotations.ApiOperation;
 
-@CrossOrigin(origins = "http://localhost:3000")
+@CrossOrigin(origins = {"http://localhost:3000", "https://www.moonlee242.me", "https://mlee242.github.io"})
 @RestController
 @RequestMapping("/issues")
 public class IssueController {
