@@ -10,5 +10,5 @@ import com.projecttracker.demo.data.IssueDAO;
 @Repository
 public interface IssueRepository extends CrudRepository<IssueDAO, Long>  {
 	List<IssueDAO> findAllByCategory(String category);
-	IssueDAO findByUserId(String userId);
+	IssueDAO findByIssueId(String issueId);
 }

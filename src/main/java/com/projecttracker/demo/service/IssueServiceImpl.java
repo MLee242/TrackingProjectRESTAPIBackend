@@ -26,7 +26,7 @@ public class IssueServiceImpl implements IssueService {
 	public IssueDAO createIssue(IssueDetails issue) {
 		ModelMapper modelMapper = new ModelMapper();
 		IssueDAO issueDAO = modelMapper.map(issue, IssueDAO.class);
-		issueDAO.setUserId(utils.generateUserId(30));
+		issueDAO.setIssueId(utils.generateUserId(30));
 		IssueDAO result = issueRepository.save(issueDAO);
 		return result;
 	}
@@ -40,8 +40,8 @@ public class IssueServiceImpl implements IssueService {
 	}
 
 	@Override
-	public IssueDAO updateIssue(String userId, IssueDetails issue) {
-		IssueDAO issueEntity = issueRepository.findByUserId(userId);
+	public IssueDAO updateIssue(String issueId, IssueDetails issue) {
+		IssueDAO issueEntity = issueRepository.findByIssueId(issueId);
 		if(issueEntity == null) {
 			throw new NoSuchElementException();
 		}
@@ -53,8 +53,8 @@ public class IssueServiceImpl implements IssueService {
 	}
 
 	@Override
-	public void deleteIssue(String userId) {
-		IssueDAO issueEntity = issueRepository.findByUserId(userId);
+	public void deleteIssue(String issueId) {
+		IssueDAO issueEntity = issueRepository.findByIssueId(issueId);
 		if(issueEntity == null) {
 			throw new NoSuchElementException();
 		}

@@ -19,7 +19,7 @@ public class IssueDAO {
 	
 	
 	@Column(nullable = false)
-	private String userId;
+	private String issueId;
 	
 	@Column(nullable=false, unique = true)
 	@NotNull(message = "title cannot be empty")
@@ -46,12 +46,12 @@ public class IssueDAO {
 		
 	}
 	
-	public String getUserId() {
-		return userId;
+	public String getIssueId() {
+		return issueId;
 	}
 
-	public void setUserId(String userId) {
-		this.userId = userId;
+	public void setIssueId(String issueId) {
+		this.issueId = issueId;
 	}
 
 	public Long getId() {

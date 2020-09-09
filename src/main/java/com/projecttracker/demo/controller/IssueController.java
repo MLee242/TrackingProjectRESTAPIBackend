@@ -23,6 +23,8 @@ import com.projecttracker.demo.response.RequestOperationName;
 import com.projecttracker.demo.response.RequestOperationStatus;
 import com.projecttracker.demo.service.IssueService;
 
+import io.swagger.annotations.ApiOperation;
+
 @CrossOrigin(origins = "http://localhost:3000")
 @RestController
 @RequestMapping("/issues")
@@ -31,6 +33,10 @@ public class IssueController {
 	@Autowired
 	IssueService issueService;
 	
+	
+	@ApiOperation(value ="Create Issue Web Service Endpoint",
+			notes ="This Web Service Endpoint creates Issue and post to database"
+			)
 	@PostMapping(produces= {
 			MediaType.APPLICATION_JSON_VALUE,
 			MediaType.APPLICATION_XML_VALUE	
@@ -45,17 +51,23 @@ public class IssueController {
 		return result;
 	}
 	
+	@ApiOperation(value ="Get All Issues by Category Web Service Endpoint",
+			notes ="This Web Service Endpoint gets All Issue by category Id"
+			)
 	@GetMapping(value="/{categoryId}", produces= {
 			MediaType.APPLICATION_JSON_VALUE,
 			MediaType.APPLICATION_XML_VALUE	
 	})
-	public List<IssueDAO> getWorkIssues(@PathVariable("categoryId") String category){
+	public List<IssueDAO> getIssuesByCategory(@PathVariable("categoryId") String category){
 	
 		List<IssueDAO> result = issueService.getWorkIssues(category);
 		return result;
 	}
 	
-	@PutMapping(path="/{userId}", produces= {
+	@ApiOperation(value ="Update Issue by issueId Category Web Service Endpoint",
+			notes ="This Web Service Endpoint gets All Issue by Issue Id"
+			)
+	@PutMapping(path="/{issueId}", produces= {
 			MediaType.APPLICATION_XML_VALUE,
 			MediaType.APPLICATION_JSON_VALUE
 			
@@ -64,25 +76,28 @@ public class IssueController {
 			MediaType.APPLICATION_JSON_VALUE
 			
 	})
-	public IssueDAO updateIssue(@PathVariable("userId") String userId,
+	public IssueDAO updateIssue(@PathVariable("issueId") String issueId,
 			@RequestBody IssueDetails issueDetails) {
-		IssueDAO returnValue = issueService.updateIssue(userId, issueDetails);
+		IssueDAO returnValue = issueService.updateIssue(issueId, issueDetails);
 		return returnValue;
 	}
 	
-	@DeleteMapping(path="/{userId}", produces= {
+	@ApiOperation(value ="Delete Issue by issue Id Category Web Service Endpoint",
+			notes ="This Web Service Endpoint gets All Issue by issue Id"
+			)
+	@DeleteMapping(path="/{issueId}", produces= {
 			MediaType.APPLICATION_XML_VALUE,
 			MediaType.APPLICATION_JSON_VALUE
 			
 	})
-	public OperationStatusModel deleteUser(@PathVariable("userId") String userId) {
+	public OperationStatusModel deleteUser(@PathVariable("issueId") String issueId) {
 		
 		OperationStatusModel returnValue = new OperationStatusModel();
 		
 		returnValue.setOperationName(RequestOperationName.DELETE.name());
 		
 
-		issueService.deleteIssue(userId);
+		issueService.deleteIssue(issueId);
 		
 		
 		returnValue.setOperationResult(RequestOperationStatus.SUCCESS.name());
