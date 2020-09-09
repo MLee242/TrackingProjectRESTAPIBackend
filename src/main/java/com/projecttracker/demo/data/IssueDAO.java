@@ -18,28 +18,27 @@ public class IssueDAO {
 	private Long id;
 	
 	
-	@Column(nullable = false)
+	@Column(nullable = false, unique = true)
 	private String issueId;
 	
-	@Column(nullable=false, unique = true)
-	@NotNull(message = "title cannot be empty")
-	@Size(min=2, message="title needs to be greater than 1")
+	@Column(nullable=false)
+	//@NotNull(message = "title cannot be empty")
+	//@Size(min=2, message="title needs to be greater than 1")
 	private String title;
 	
 	@Column(nullable=false)
-	@NotNull(message = "summary cannot be empty")
-	@Size(min=2, message="summary needs to be greater than 1")
+	//@NotNull(message = "summary cannot be empty")
+	//@Size(min=2, message="summary needs to be greater than 1")
 	private String summary;
-	@NotNull(message = "category cannot be empty")
-	@Size(min=2, message="category length needs to be greater than 1")
+	//@NotNull(message = "category cannot be empty")
+	//@Size(min=2, message="category length needs to be greater than 1")
 	@Column(nullable=false)
 	private String category;
 	@Column(nullable=false)
-	@NotNull(message = "status cannot be empty")
+	//@NotNull(message = "status cannot be empty")
 	private String status;
 	@Column(nullable=false, columnDefinition = "VARCHAR(1337)")
-	@NotNull(message = "description cannot be empty")
-	
+	//@NotNull(message = "description cannot be empty")
 	private String description;
 	
 	public IssueDAO() {
