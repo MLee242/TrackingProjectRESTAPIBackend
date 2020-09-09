@@ -45,7 +45,7 @@ public class IssueController {
 			MediaType.APPLICATION_XML_VALUE	
 			
 	})
-	public IssueDAO createIssue(@Valid @RequestBody IssueDetails issue){
+	public IssueDAO createIssue(@RequestBody IssueDetails issue){
 		 		
 		IssueDAO result = issueService.createIssue(issue);
 		return result;
